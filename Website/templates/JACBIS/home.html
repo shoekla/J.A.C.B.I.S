@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + jQuery">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <title>J.A.C.B.I.S Welcome</title>
+   <link rel="icon" href="{{ url_for('static', filename='img/brain.png')}}">
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- WEATHER ICONS-->
+   <!--
+
+    <link href="{{ url_for('static', filename='css/plugins/animate.css')}}" rel="stylesheet">
+    -->
+
+
+
+   <link rel="stylesheet" href="../vendor/weather-icons/css/weather-icons.min.css">
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+
+    <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" id ="bscss">
+   <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+
+    <link href="{{ url_for('static', filename='css/app.css')}}" rel="stylesheet" id="maincc">
+   <link rel="stylesheet" href="css/app.css" id="maincss">
+
+    <script src="{{ url_for('static', filename='ga.js')}}"></script>
+   <script src="ga.js"></script>
+</head>
+
+<body>
+   <div class="wrapper">
+      <!-- top navbar-->
+      <header class="topnavbar-wrapper">
+         <!-- START Top Navbar-->
+         <nav role="navigation" class="navbar topnavbar">
+            <!-- START navbar header-->
+            <div class="navbar-header">
+              <h2 style="color:white">J.A.C.B.I.S</h2>
+            </div>
+            <!-- END navbar header-->
+           
+            <!-- END Nav wrapper-->
+            <!-- START Search form-->
+            <form role="search" action="search.html" class="navbar-form">
+               <div class="form-group has-feedback">
+                  <input type="text" placeholder="Type and hit enter ..." class="form-control">
+                  <div data-search-dismiss="" class="fa fa-times form-control-feedback"></div>
+               </div>
+               <button type="submit" class="hidden btn btn-default">Submit</button>
+            </form>
+            <!-- END Search form-->
+         </nav>
+         <!-- END Top Navbar-->
+      </header>
+      <!-- sidebar-->
+      <aside class="aside">
+         <!-- START Sidebar (left)-->
+         <div class="aside-inner">
+            <nav data-sidebar-anyclick-close="" class="sidebar">
+               <!-- START sidebar nav-->
+               <ul class="nav">
+                  <!-- START user info-->
+                 
+                  <!-- END user info-->
+                  <!-- Iterates over all sidebar items-->
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">What To Do???</span>
+                  </li>
+                  <li class="active">
+                     <a href="/JACBIS/" title="Dashboard" data-toggle="collapse">
+                        <div class="pull-right label label-info">:)</div>
+                        <em class="icon-speedometer"></em>
+                        <span data-localize="sidebar.nav.DASHBOARD">What Is J.A.C.B.I.S</span>
+                     </a>
+                  
+                  </li>
+                  <li class=" ">
+                     <a href="/JACBIS/addPhraseToArtMenu/" title="Widgets">
+                        <div class="pull-right label label-success">{{numP}}</div>
+                        <em class="icon-grid"></em>
+                        <span data-localize="sidebar.nav.WIDGETS">Add Phrase</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="/JACBIS/addLink/" title="Layouts" data-toggle="collapse">
+
+                        <div class="pull-right label label-success">CS</div>
+                        <em class="icon-layers"></em>
+                        <span>Add Python</span>
+                     </a>
+                     <ul id="layout" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Layouts</li>
+                        <li class=" ">
+                           <a href="dashboard_h.html" title="Horizontal">
+                              <span>Horizontal</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                   <li class=" ">
+                     <a href="/JACBIS/addRand/" title="Layouts" data-toggle="collapse">
+
+                        <div class="pull-right label label-success">{{randL}}</div>
+                        <em class="icon-layers"></em>
+                        <span>Add Rand-Response</span>
+                     </a>
+                     <ul id="layout" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Layouts</li>
+                        <li class=" ">
+                           <a href="dashboard_h.html" title="Horizontal">
+                              <span>Horizontal</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class=" ">
+                     <a href="https://github.com/shoekla/J.A.C.B.I.S" title="Layouts" data-toggle="collapse">
+
+                        <div class="pull-right label label-success">G</div>
+                        <em class="icon-layers"></em>
+                        <span>Github</span>
+                     </a>
+                     <ul id="layout" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Layouts</li>
+                        <li class=" ">
+                           <a href="dashboard_h.html" title="Horizontal">
+                              <span>Horizontal</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                 </ul>
+               <!-- END sidebar nav-->
+            </nav>
+         </div>
+         <!-- END Sidebar (left)-->
+      </aside>
+      <!-- offsidebar-->
+     
+      <!-- Main section-->
+      <section>
+         <!-- Page c-->
+            <!-- END widgets box-->
+           
+             <br/>
+                     <div class="col-lg-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                              <div class="panel-title">
+                              <h1><center>Welcome To J.A.C.B.I.S</center></h1>
+                             <center><p style="color:grey">"Just A Community Built Intelligence System"</p></center>
+                              </div>
+                              <hr>
+                           </div>
+
+                           <div class="col-lg-6">
+  <iframe width="480" height="315" src="https://www.youtube.com/embed/JuxCPlwxWyc?list=PLHVG2L347X-GkJwMwMfbJTUy07_F0lxRi" frameborder="0" allowfullscreen></iframe>
+
+                           </div>
+                            <div class="col-lg-6">
+   <div style="margin-left:10px">
+                              <h2> <u>What is J.A.C.B.I.S</u></h2>
+                              <div style="margin-left:10px">
+                                   J.A.C.B.I.S is exactly what it says it is. It is "Just A Community Built Intelligence System". J.A.C.B.I.S is a voice computing unit that scrapes data for the best response to questions, add calendar events, play videos and songs based on your request and so much more, but what is "so much more"? People can now add customized responses to keywords or phrases, and even write python scripts to alter user input, which makes J.A.C.B.I.S smarter and smarter. Finally, with its “Config” file, J.A.C.B.I.S. can be customized to you specifically! 
+
+
+                              </div>
+                           </div>
+                           </div>
+<br/><br/>
+                           <!-- START list group-->
+                         <br/><br/>
+<br/><br/><br/><br/>
+                       
+<br/><br/>
+                           <!-- START list group-->
+                         <br/><br/>
+<br/><br/><br/>
+                <hr>
+                           <div style="margin-left:10px">
+                              <h2> <u>How to add to J.A.C.B.I.S</u></h2>
+                              <div style="margin-left:10px">
+                                   With this website, it is really simple to add to J.A.C.B.I.S. Simply go to the "Add Phrase" tab, and add a phrase or keyword, and a response to link it to. If you want to add a python script, use the text editor to write python and add it just like you would add a regular response (You will find more info in the comments of the pre-set file).    
+
+
+
+                              </div>
+                           </div>
+
+                       
+
+                            <div style="margin-left:10px">
+                              <h2> <u>Download:</u></h2>
+                              <div style="margin-left:10px">
+                              Unfortunately, downloads are only for Mac at this point,<br/> but I am working on getting J.A.C.B.I.S on multiple operating systems.   <br/><br/>
+                             
+
+
+                              </div>
+                               <button class="btn btn-primary">Download J.A.C.B.I.S</button>
+                           </div>
+
+
+
+                           <br/><br/>
+                           </div>
+                           <!-- END list group-->
+                           <!-- START panel footer-->
+                                
+                           <!-- END panel-footer-->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- END dashboard main content-->
+               <!-- START dashboard sidebar-->
+        
+               <!-- END dashboard sidebar-->
+            </div>
+         </div>
+      </section>
+      <!-- Page footer-->
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+
+   <!-- DEMO-->
+   <!-- =============== APP SCRIPTS ===============-->
+
+    <script src="{{ url_for('static', filename='js/app.js')}}"></script>
+   <script src="js/app.js"></script>
+</body>
+
+</html>
