@@ -214,21 +214,6 @@ def crawl(url,pages):
 	except:
 		print "Error at: "+str(url)
 
-def getMovieDate(name):
-	name = name +" release date"
-	name=name.replace(" ","+")
-	url = "http://www.bing.com/search?q="+str(name)+"&go=Submit&qs=n&form=QBLH&pq=the+avengers&sc=10-11&sp=-1&sk=&ghc=1&cvid=368740BF914F45C4A0459CD0D08B5CF6"
-	try:
-		arr=[]
-		source_code=requests.get(url)
-		plain_text=source_code.text
-		soup=BeautifulSoup(plain_text)
-		so = str(soup)
-		index = so.find('<div class="b_focusTextMedium">')
-		end = so.find("</div>",index+1)
-		return so[index:end]
-
-	except Exception,e: print str(e)
 
 def contactLink(url):
 	try:
@@ -878,10 +863,89 @@ def music(name):
 	openInWeb(link)
 	return
 
+def definition(word):
+	url = turnToSearch(word)
+	try:
+		#print url
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		so = str(soup)
+		#print so
+		index = 0
+		end = 0
+		res = ""
+		counter = 0
+		while index > -1:
+			index = so.find('<div class="dc_mn">',end)
+			#print index
+			begin = so.find('>',index+1)
+			end = so.find('</div>',begin+1)
+			counter = counter +1
+			res = res+""+str(counter)+", "+so[begin+1:end]
+			index = so.find('<div class="dc_mn">',end)
+		res = res.replace(":","")
+		res = res.replace("(","")
+		res = res.replace(")","")
+		if len(res) > 1:
+			return res
+		return "I could not understand that"
+
+	except:
+		pass
+
+#print definition("What is the definition of music")
+
+def getAnswer(name):
+	name = name.replace(" ","+")
+	url = "http://www.bing.com/search?q="+name+"&qs=AS&pq="+name+"&sc=8-19&sp=1&cvid=9464A3030C30444898E745A4763A0675&FORM=QBRE"
+	try:
+		print url
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		so = str(soup)
+		#print so
+		index = 0
+		end = 0
+		res = ""
+		index = so.find('class="b_focusText',end)
+		#print index
+		begin = so.find('>',index+1)
+		end = so.find('</div>',begin+1)
+		#print end
+		res = so[begin+1:end]
+		res = res.replace("(","")
+		res = res.replace(")","")
+		if len(res) > 1 and index != -1:
+			return res
+		return "I could not understand that"
+
+	except:
+		pass
 
 
 
 
+def getMovieDate(name):
+	name = name +" release date"
+	name=name.replace(" ","+")
+	url = "http://www.bing.com/search?q="+str(name)+"&go=Submit&qs=n&form=QBLH&pq=the+avengers&sc=10-11&sp=-1&sk=&ghc=1&cvid=368740BF914F45C4A0459CD0D08B5CF6"
+	try:
+		arr=[]
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		so = str(soup)
+		index = so.find('<div class="b_focusText')
+		begin = so.find(">",index)+1
+		end = so.find("</div>",index+1)
+		so = so[begin:end]
+		so = so.replace("(","")
+		so = so.replace(")","")
+		return so
+
+	except Exception,e: print str(e)
 
 
 

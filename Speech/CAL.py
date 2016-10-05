@@ -8,6 +8,8 @@ try:
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
+
+
 def createEvent(timeB,timeE,name):
     SCOPES = 'https://www.googleapis.com/auth/calendar'
     store = file.Storage('storage.json')
@@ -37,4 +39,8 @@ def createEvent(timeB,timeE,name):
             e['start']['dateTime'], e['end']['dateTime']))
 
 
-createEvent("2016-10-04T19:00:00","2016-10-04T20:00:00","Watch Flash")
+#createEvent("2016-10-04T19:00:00","2016-10-04T20:00:00","Watch Flash")
+
+
+#getDate("2016-10-04 17:57:29.542450","")
+
