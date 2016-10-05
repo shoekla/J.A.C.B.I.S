@@ -15,6 +15,8 @@ def openInWeb(url):
 	print "In ethod"
 	# Open URL in new window, raising the window if possible.
 	webbrowser.open_new(url)
+def openWindow():
+	webbrowser.open("https://www.google.com/", new=2, autoraise=True)
 def is_in_arr(lis,s):
 	result=False
 	for item in lis:
@@ -941,14 +943,20 @@ def getMovieDate(name):
 		begin = so.find(">",index)+1
 		end = so.find("</div>",index+1)
 		so = so[begin:end]
-		so = so.replace("(","")
-		so = so.replace(")","")
+		print "So: "+so
+		if len(so) == 0:
+			so = str(soup)
+			index = so.find(">",so.find("Release date:</span>"))
+			end = so.find("</li>")
+			so = so[index:end]
+		so = so.replace("(United States)","")
 		return so
 
 	except Exception,e: print str(e)
 
-
-
-
+def youtubeSearchs(name):
+	name = name.replace(" ","+")
+	link = "https://www.youtube.com/results?search_query="+str(name)
+	openInWeb(link)
 
 

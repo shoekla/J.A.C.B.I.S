@@ -10,7 +10,7 @@ except ImportError:
     flags = None
 
 
-def createEvent(timeB,timeE,name):
+def createEvent(info):
     SCOPES = 'https://www.googleapis.com/auth/calendar'
     store = file.Storage('storage.json')
     creds = store.get()
@@ -22,14 +22,18 @@ def createEvent(timeB,timeE,name):
 
     GMT_OFF = '-07:00'      # PDT/MST/GMT-7
     EVENT = {
-        'summary': name,
-        'start':  {'dateTime': timeB+'%s' % GMT_OFF},
-        'end':    {'dateTime': timeE+'%s' % GMT_OFF},
+        'summary': "",
+        'start':  {'dateTime': ""+'%s' % GMT_OFF},
+        'end':    {'dateTime': ""+'%s' % GMT_OFF},
         'attendees': [
             {'email': Config.email},
         ],
     }
+    CAL.events().quickAdd(
+    calendarId='primary',
+    text=info).execute()
 
+    """
     e = CAL.events().insert(calendarId='primary',
             sendNotifications=True, body=EVENT).execute()
 
@@ -37,9 +41,9 @@ def createEvent(timeB,timeE,name):
         Start: %s
         End:   %s''' % (e['summary'].encode('utf-8'),
             e['start']['dateTime'], e['end']['dateTime']))
+    """
 
-
-#createEvent("2016-10-04T19:00:00","2016-10-04T20:00:00","Watch Flash")
+#createEvent()
 
 
 #getDate("2016-10-04 17:57:29.542450","")
