@@ -85,6 +85,30 @@ def  putInFireBro(phrase =None, resp = None, how = None,message = None, color = 
 	return render_template("JACBIS/addPhraseMenu.html",message=message,color =color,numP = numP,randL = randL)
 
 
+@app.route('/JACBIS/Link/',methods=['POST'])
+def putInFireBroPython(phrase =None, resp = None, how = None,message = None, color = None, numP = None,randL = 0):
+	numP =""
+	randL = fire.getRandLen()
+	print "YO)OOOOOOOOOOO"
+	message = ""
+	phrase = ""
+	color = ""
+	resp = ""
+	how = ""
+	print "0000"
+	phrase = request.form['phrase']
+	print "1"
+	resp = request.form['response']
+	how = "Contain"
+	print "2"
+	print "3"
+	resp = "r"+resp
+	numP = fire.getResp('NumOfPhrases')
+	message = "Congrats your response is 1 of "+str(fire.putInFirebasePython(phrase,resp))+" for this phrase!"
+	color = "green"
+	print "4"
+	return render_template("JACBIS/addPhraseMenu.html",message=message,color =color,numP = numP,randL = randL)
+
 
 @app.route('/JACBIS/addLink/')
 def goToLinkMenu(numP = None, randL = 0):

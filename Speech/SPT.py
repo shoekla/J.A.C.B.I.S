@@ -5,6 +5,18 @@ import Config
 import sys
 import Web
 import CAL
+import urllib2
+import re
+import nltk
+import csv
+import time
+import requests
+import string
+from bs4 import BeautifulSoup
+from urllib2 import urlopen
+import os
+import fire
+import webbrowser
 voice = Config.voice
 name = Config.name
 def say(s):
@@ -110,8 +122,22 @@ def convo():
 
     else:
         s = Web.getAnswer(userIn)
-        say(s)
-        #say("I did not understand that, If you can add that to my database, that would be great.")
+        if Config.firebaseR:
+            if len(s) > 0:
+                say(s)
+                return
+            s = fire.getMyRespPyth(userIn)
+            if len(s) > 0:
+                say(s)
+                return
+            s = fire.getMyResp(userIn)
+            if len(s) > 0:
+                say(s)
+                return
+            if Config.randomR:
+                say(fire.getRandomResponse())
+                return
+        say("I did not understand that, If you can add that to my database, that would be great.")
 
 convo()
 print "Reached"

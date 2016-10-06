@@ -7,7 +7,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>J.A.C.B.I.S Welcome</title>
+   <title>J.A.C.B.I.S Add Python Script</title>
    <link rel="icon" href="{{ url_for('static', filename='img/brain.png')}}">
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
@@ -154,23 +154,63 @@
                      <div class="col-lg-12">
                  <div class="panel panel-default">
                <div class="panel-heading">Add Python Script to J.A.C.B.I.S</div>
+               <hr/>
                <div class="panel-body">
-                  <form class="form-inline" action="." method="POST">
+                  <form class="form-inline" action="/JACBIS/Link/" method="POST">
                      
                      <div class="form-group">
                         <div class="col-lg-6">
-                        <input id="input-password" type="text" placeholder="Enter Keyword" class="form-control" name="rand" autocomplete="off"><br/>
+         <input id="input-password" type="text" placeholder="Enter Keyword" class="form-control" name="phrase" autocomplete="off"><br/>
+<br/>
+                              <textarea name="code" style="width: 65vh; height:75vh;" placeholder="Enter your code here">
+Utilities for your python Code (2.7)
+User Input (String) will be stored as variable "userIn"                             
+J.A.C.B.I.S. has several libraries created and imported.
+TO MAKE J.A.C.B.I.S SPEAK USE THE set a variable "res" = the string you want spoken
+J.A.C.B.I.S    can't say strings with parenthisis so don't include them
+   Imported libs:
+      speech_recognition
+      os
+      time
+      sys
+      urllib2
+      nltk
+      csv
+      requests
+      string
+      bs4 (BeautifulSoup)
+      urllib2 (urlopen)
+   Created libs:
+      CAL:
+         Methods: 
+            createEvent(info) - create event on google calendar based on string using google's quick add
+      Web:
+         Methods:
+            openInWeb(url) - opens string "url" in chrome
+            turnToWiki(name) - returns url of wiki page of "name" (Link)
+            getTwitter(name) - returns Twitter search on "name" (Link)
+            getFacebook(name) - returns Facebook search on "name" (Link)
+            getGooglePlus(name) - returns G+ search on "name" (Link)
+            getYoutubeLink(name) - returns Youtube search on "name" (Link)
+            searchImgGoogle(name) - returns Google Img Search on "name" (Link)
+            googLink(name) - returns Google Search on "name" (Link)           
+   Other variables:
+      User name- Config.name            
+
+</textarea>
+                      
+<br/><br/>
+                       <input type="submit" name="my-form" class="btn btn-primary"/>
+                     
                         </div>
                            <div class="col-lg-6">
-
-                              <textarea name="code" style="width: 80vh; height:75vh;" placeholder="Enter your code here" id="my-textarea"></textarea>
+                              <h2>Write Your Code Below</h2>
+         <textarea name="response" style="width: 70vh; height:73vh;" placeholder="Enter your code here" id="my-textarea"></textarea>
                               </div>
                      
                      </div>
                      </div>
-                          <div style="margin-left:10px">
-                       <input type="submit" name="my-form" class="btn btn-primary"/>
-                       </div>
+                          
                        <br/><br/>
                         
 

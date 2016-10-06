@@ -1,7 +1,24 @@
 
 from firebase import firebase
-import enchant
 import random
+import speech_recognition as sr
+import os
+import time
+import Config
+import sys
+import Web
+import CAL
+import urllib2
+import re
+import nltk
+import csv
+import time
+import requests
+import string
+from bs4 import BeautifulSoup
+from urllib2 import urlopen
+import os
+import webbrowser
 firebase = firebase.FirebaseApplication('https://jacbis.firebaseio.com/', None)
 """result = firebase.get('s', None)
 if result == None:
@@ -44,7 +61,35 @@ def putInFirebase(phrase,response):
 		print "5"	
 		incrementN()
 		return len(a)
-
+def putInFirebasePython(phrase,response):
+	phrase = phrase.lower()
+	phrase = phrase.strip()
+	if getResp(phrase) == None:
+		response = "['"+response+"']"
+		firebase.post(phrase,response)
+		keys = eval(getResp("PythonKeys"))
+		keys.append(phrase)
+		firebase.delete("PythonKeys",None)
+		firebase.post("PythonKeys",str(keys))
+		incrementN()
+		return 1
+	else:
+		print "1"
+		a = eval(getResp(phrase))
+		r = eval(getResp(phrase))
+		for item in r:
+			print "Item: "+item + "Res: "+response
+			if item == response:
+				return len(a)
+		print "2"
+		a.append(response)
+		print "3"
+		firebase.delete(phrase,None)
+		print "4"
+		firebase.post(phrase,str(a))
+		print "5"	
+		incrementN()
+		return len(a)
 
 def addToConvYou(phrase):
 	w = phrase.lower()
@@ -55,6 +100,11 @@ def addToConvYou(phrase):
 def getRandR():
 	arr = eval(getResp('randomR'))
 	return arr
+def getRandomResponse():
+	arr = getRandR()
+	res = arr[random.randint(0, len(arr)-1)]
+	return res
+
 def addToRand(phrase):
 	arr = eval(getResp('randomR'))
 	if phrase not in arr:
@@ -70,59 +120,17 @@ def getMyResp(p):
 			arrR = eval(getResp(item))
 			resP = arrR[random.randint(0, len(arrR)-1)]
 			b = resP[1:]
-			conv.append(b)
-			return;
-	if "?" in p:
-		b = "(ME)Good Question that I don't know the answer to ;)"
-		conv.append(b)
-		return;
-	print "1"
-	if getResp(p) != None:
-			arrR = eval(getResp(p))
+			return b
+	return ""
+def getMyResp(p):
+	keys  = eval(getResp("Keys"))
+	for item in keys:
+		if item in p:
+			arrR = eval(getResp(item))
 			resP = arrR[random.randint(0, len(arrR)-1)]
 			b = resP[1:]
-			conv.append(b)
-			return;
-	print "2"
-	s = p.split(' ')
-	for item in s:
-		if getResp(item) != None:
-			if getResp(item).startswith('C'):
-				arrR = eval(getResp(item))
-				resP = arrR[random.randint(0, len(arrR)-1)]
-				b = resP[1:]
-				conv.append(b)
-				return;
-	print s
-	if '?' in p:
-		b = "Good Question That I don't know the answer to"
-		conv.append(b)
-		return;
-	print "3"
-	d = enchant.Dict("en_US")
-	print "4"
-	for item in s:
-		if d.check(item) == False:
-			arrSug = d.suggest(item)
-			stringA = "("
-			count = 0
-			for sug in arrSug:
-				if count == 0:
-					stringA = stringA +sug
-				else:
-					stringA = stringA+","+sug
-				count = count+1
-			stringA = stringA +')'
-			b = "I didn't understand '"+item+"' try one of the following: "+stringA
-			conv.append(b)
-			return;
-	print "5"
-	rA = getRandR()
-	b = "(ME)"+rA[random.randint(0, len(rA)-1)]
-	print b
-	conv.append(b)
-	return;
-
+			return b
+	return ""
 
 def getResp(phrase):
 	a = firebase.get(phrase,None)
@@ -164,35 +172,18 @@ def incrementN():
 def getRandLen():
 	arr = eval(getResp('randomR'))
 	return len(arr)
-def putInFirebasePython(phrase,response):
-	phrase = phrase.lower()
-	phrase = phrase.strip()
-	if getResp(phrase) == None:
-		response = "['"+response+"']"
-		firebase.post(phrase,response)
-		keys = eval(getResp("PythonKeys"))
-		keys.append(phrase)
-		firebase.delete("PythonKeys",None)
-		firebase.post("PythonKeys",str(keys))
-		incrementN()
-		return 1
-	else:
-		print "1"
-		a = eval(getResp(phrase))
-		r = eval(getResp(phrase))
-		for item in r:
-			print "Item: "+item + "Res: "+response
-			if item == response:
-				return len(a)
-		print "2"
-		a.append(response)
-		print "3"
-		firebase.delete(phrase,None)
-		print "4"
-		firebase.post(phrase,str(a))
-		print "5"	
-		incrementN()
-		return len(a)
+def getMyRespPyth(p):
+	keys  = eval(getResp("PythonKeys"))
+	for item in keys:
+		if item in p:
+			arrR = eval(getResp(item))
+			resP = arrR[random.randint(0, len(arrR)-1)]
+			b = resP[1:]
+			res = ""
+			exec(b)
+			print "Res: "+res
+			return res
+	return ""
 """
 a = ["Hey"]
 b = a[random.randint(0, len(a)-1)]

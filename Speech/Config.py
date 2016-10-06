@@ -34,3 +34,8 @@ Zarvox
 name = "Abir"
 email = "abirshukla@gmail.com"
 voice = 'Bruce'
+firebaseR = True
+randomR = True
+
+
+

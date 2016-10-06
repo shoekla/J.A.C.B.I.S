@@ -59,7 +59,6 @@ def getName(url):
 		if college in str(title):
 			str(title).replace(college,"")
 	return title
-
 def getGoodLink(url):
 	k = url.rfind("/")
 	return url[:k+1]
@@ -717,7 +716,10 @@ def searchImg(link):
 	crawlImg(link,a)
 	new=deleteDuplicates(a)
 	return new
-
+def searchImgGoogle(name):
+	search=name.replace(" ","+")
+	link="https://www.google.com/search?q="+search+"&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi67cG4rcTPAhUJ7oMKHV_ZCjcQ_AUICygE&biw=1920&bih=983"
+	return link
 def getYoutubeLink(name):
 	search = name.replace(" ","+")
 	url="https://www.youtube.com/results?search_query="+str(search)
@@ -921,11 +923,11 @@ def getAnswer(name):
 		res = res.replace(")","")
 		if len(res) > 1 and index != -1:
 			return res
-		return "I could not understand that"
+		return ""
 
 	except:
 		pass
-
+	return ""
 
 
 
