@@ -135,6 +135,7 @@ def getResp(phrase):
 		"""
 		keys.append(key)
 	return a[keys[0]]
+print getResp("salt")
 def getKey(phrase):
 	a = firebase.get(phrase,None)
 	if a == None:
